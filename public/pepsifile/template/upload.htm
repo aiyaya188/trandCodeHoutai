@@ -1,0 +1,98 @@
+<style type="text/css">
+body { font-family: "微软雅黑"; font-size: 14px; }
+a:link, a:visited { color: #666666; text-decoration: none; outline: none; }
+a:hover { color: #0E4470; }
+.clear { clear: both; }
+.hyright { width: 830px; min-height: 520px; padding: 18px; background: #fff; border: 1px solid #dee2e5; margin: 0 auto; }
+.shipin_tit h2 { font-size: 30px; font-weight: normal; }
+.shipin_tit h2 ul li.selected { color: #FF804F; border-bottom: 1px solid #FF801D; }
+.shipin_tit h2 ul li { float: left; color: #C2C1C1; padding: 5px 10px; cursor: pointer; }
+ul li, ul { list-style-type: none; padding: 0; margin: 0; }
+.webuploader-container { width: 286px; height: 186px; background: url(sc.png) no-repeat; margin: 10px auto; cursor: pointer; position: relative; }
+.webuploader-element-invisible { position: absolute !important; clip: rect(1px 1px 1px 1px); /* IE6, IE7 */ clip: rect(1px,1px,1px,1px); }
+.webuploader-pick { position: relative; display: inline-block; cursor: pointer; width: 286px; height: 186px; color: #fff; text-align: center; border-radius: 3px; overflow: hidden; }
+#divFileProgressContainer { position: relative; }
+.webuploader-pick-disable { opacity: 0.6; pointer-events: none; }
+.progressName { font-size: 12px; margin: 10px 0px; }
+.progressName a { float: right; border: 1px solid #ff7a19; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+.cancle { position: absolute; right: 0; width: 70px; height: 26px; border: 1px solid #ff7a19; color: #ff7a19; border-radius: 5px; line-height: 26px; text-align: center; }
+.progressBarInProgress { height: 100%; display: block; background: #ff7a19; border-radius: 3px; }
+.jindu { width: 600px; height: 23px; padding: 3px; border: 1px solid #D3D3D3; border-radius: 4px; margin-top: 20px; margin-bottom: 8px; }
+.progressBarStatus ul li { float: left; width: 25%; text-align: center; }
+.progressBarStatus ul li.first { text-align: left; }
+.progressBarStatus ul li.last { text-align: right; }
+//*系统调用*//
+</style>
+<script src="/source/plugin/pepsifile/js/jquery-1.11.2.min.js?{VERSH}"></script>
+<script language="javascript">
+    function Request(argname){
+        var url = document.location.href;
+        var arrStr = url.substring(url.indexOf("?")+1).split("&");
+        //return arrStr;
+        for(var i =0;i<arrStr.length;i++) {
+            var loc = arrStr[i].indexOf(argname+"=");
+            if(loc!=-1){
+                return arrStr[i].replace(argname+"=","").replace("?","");
+                break;
+            }
+        }
+        return "";
+    }
+
+    ssss=Request("abc");
+
+    var ServerUrl = ssss+"/uploads/";
+
+    $(document).ready(function(){
+            //$('[data-toggle="tooltip"]').tooltip()
+            var hostname = window.location.hostname
+            var port = window.location.port || '80';
+            ServerUrl = ssss+"/uploads";
+    })
+</script>
+<link rel="stylesheet" type="text/css" href="/source/plugin/pepsifile/css/up.css?20171218" />
+<script type="text/javascript" src="/source/plugin/pepsifile/js/webuploader.js?{VERHASH}"></script>
+<script type="text/javascript" src="/source/plugin/pepsifile/js/md5.js?{VERHASH}"></script>
+<script type="text/javascript" src="/source/plugin/pepsifile/js/adminup.js?123"></script>
+<div class="gerenzhongxin mt10 yh">
+<div class="uploadmain">
+     <div class="shangchuan_biaodan" id="chose0">
+              <div id="chosevideo">选择文件</div>
+              <div id="divFileProgressContainer"></div>
+            </div>  </div>
+            </div>  </div>
+  </div>
+  <div>
+    <div style="font-weight: bold;"> <br>
+      视频地址：<input type="text" size="52" value="" id="odownpath1" name="odownpath1" style="width: 384px;">
+    &nbsp;<a href="javascript:;" onclick="do_inster();">插入</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="do_load();">重新上传</a></div>
+  </div>
+    <div style="line-height:8px;color: #bc1524;font-family: '微软雅黑', sans-serif;margin-top: 20px;">
+        <h3 style="font-size: 18px;">视频上传操作流程</h3>
+        <p style="font-size: 14px;">1、点击上传视频按钮，选择本地您要上传的视频；</p>
+        <p style="font-size: 14px;">2、视频上传完成后，点击立即插入，视频链接即可自动添加到主题内；</p>
+        <p style="font-size: 14px;">3、完成主题相关内容填写后，点击发帖栏左下角发表帖子，即可完成发布；</p>
+        <p style="font-size: 14px;">4、插入视频时请勿勾选纯文本模式</p>
+    </div>
+</div>
+<script type="text/javascript">
+	function do_inster(){
+		var viedoe=$("#odownpath1").val();
+		viedoe = viedoe.replace('//','///');
+        viedoe = viedoe.replace(/\/\//g,'/');//除去多的斜杠。。
+		
+		if(viedoe){
+        var editor=$("#e_iframe",parent.document.body);
+        editor.contents().find("body").append('[ckplayer='+viedoe+']'+viedoe+'[/ckplayer]');
+        $("#odownpath1").attr("value","");
+
+	 }else{
+				 alert('请先上传视频');
+	 }
+
+	}
+	
+	function do_load(){
+		 window.location.reload();
+	}
+</script>

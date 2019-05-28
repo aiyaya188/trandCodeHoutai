@@ -1,0 +1,84 @@
+{template common/header_ajax}
+
+<script type="text/javascript">
+
+function v_switchAttachbutton(id){
+
+	if(id == 1){
+
+		document.getElementById('v_batch_upload').className = 'current';
+
+		document.getElementById('v_url').className = '';
+
+		document.getElementById('v_batch_div').style.display = 'block';
+
+		document.getElementById('v_url_div').style.display = 'none';	
+
+	}else if(id == 2){
+
+		document.getElementById('v_url').className = 'current';
+
+		document.getElementById('v_batch_upload').className = '';
+
+		document.getElementById('v_url_div').style.display = 'block';	
+
+		document.getElementById('v_batch_div').style.display = 'none';
+
+	}
+
+}
+
+
+
+</script>
+
+
+
+<div id="main_messaqge">
+
+<div class="f_c" style="width:650px;height:100%;">
+
+<div class="flb" style="padding-left: 0px; padding-right: 0px;">
+
+<ul class="tb tb_s cl">
+
+<li id="v_batch_upload" class="current"><a href="javascript:;" hidefocus="true" onclick="v_switchAttachbutton(1);">本地上传</a></li>
+
+
+
+<li class="y"><span style="float:left">点击右侧可以隐藏继续编辑帖子，并保持上传。</span><span class="flbc" onclick="vhideAttachMenu('fwin_fwin_colaup');" title="隐藏后台继续上传">隐藏</span></li>
+
+</ul>
+
+</div>
+
+<div id="v_batch_div">
+
+<div style="min-height:400px;overflow:auto;overflow-x: hidden;">
+
+<div id="v_iframe_div" style="text-align:center;line-height: 16px;width:650px;">
+
+<div id="iframe"><iframe style="margin: 10px;" frameborder="0" src="source/plugin/pepsifile/template/upload.htm?abc={$up_url}" width="95%" height="470" scrolling="no" allowTransparency="true"></iframe></div>
+
+</div>
+
+</div>
+
+<div class="c" style="border-top: #e9e9e9 1px dashed;">
+<div class="notice">点击【上传视频】按钮选择要上传的文件<span class="pipe">|</span>可拖拽视频到上传按钮  
+
+<br />
+
+</div>
+
+</div>
+
+</div></div>
+
+
+
+</div>
+
+</div>
+
+{template common/footer_ajax}

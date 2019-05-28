@@ -1,0 +1,45 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ablitt
+ * Date: 2018/10/17
+ * Time: 9:38
+ */
+namespace App\Http\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Videos extends Model
+{
+//    protected $table = 'statistics';
+//
+//    protected $fillable = ['access_date', 'pc_count', 'mobile_count'];
+//    public $timestamps = false;
+
+    /**
+     * 按符号截取字符串的指定部分
+     * @param string $str 需要截取的字符串
+     * @param string $sign 需要截取的符号
+     * @param int $number 如是正数以0为起点从左向右截  负数则从右向左截
+     * @return string 返回截取的内容
+     */
+    public static  function cut_str($str,$sign,$number){
+        $array=explode($sign, $str);
+        $length=count($array);
+        if($number<0){
+            $new_array=array_reverse($array);
+            $abs_number=abs($number);
+            if($abs_number>$length){
+                return 'error';
+            }else{
+                return $new_array[$abs_number-1];
+            }
+        }else{
+            if($number>=$length){
+                return 'error';
+            }else{
+                return $array[$number];
+            }
+        }
+    }
+}
